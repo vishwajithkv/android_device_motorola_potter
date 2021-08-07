@@ -1,18 +1,12 @@
 [
    {
-      "remote": "blobs",
+      "remote":"blobs",
       "repository":"vendor_motorola_msm8953-common",
       "target_path":"vendor/motorola/msm8953-common",
-      "branch": "eleven"   
+      "branch":"eleven"
    },
    {
       "repository":"kernel_motorola_msm8953",
       "target_path":"kernel/motorola/msm8953"
-   },
-   {
-      "remote":"github",
-      "repository":"PixelExperience/packages_resources_devicesettings-custom",
-      "target_path":"packages/resources/devicesettings-custom",
-      "branch":"eleven"
    }
 ]
