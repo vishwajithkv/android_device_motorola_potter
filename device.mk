@@ -216,7 +216,9 @@ PRODUCT_PACKAGES += \
     init.qcom.rc \
     init.recovery.qcom.rc \
     init.target.rc \
-    ueventd.qcom.rc
+    ueventd.qcom.rc \
+    fstab.qcom \
+    init.potter.rc 
 
 # IPACM
 PRODUCT_PACKAGES += \
