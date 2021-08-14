@@ -240,6 +240,21 @@ PRODUCT_COPY_FILES += \
 #PRODUCT_PACKAGES += \
 #   MotoActions
 
+# NFC 
+PRODUCT_PACKAGES += \
+    libnfc \
+    com.android.nfc_extras \
+    NfcNci \
+    nqnfcee_access.xml \
+    nqnfcse_access.xml \
+    SecureElement \
+    Tag \
+    android.hardware.nfc@1.1-service
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/libnfc-nci.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-nci.conf \
+    $(LOCAL_PATH)/configs/libnfc-nxp.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-nxp.conf
+
 # OMX
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \
