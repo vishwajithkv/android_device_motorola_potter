@@ -407,6 +407,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
   $(DEVICE_PATH)/configs/thermal-engine.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine.conf
 
+# ZAF
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/configs/zaf/zaf_mot_imx362.json:system/etc/zaf/zaf_mot_imx362.json \
+    $(DEVICE_PATH)/configs/zaf/zaf_mot_s5k2l7.json:system/etc/zaf/zaf_mot_s5k2l7.json
+
 # Wifi
 PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service \
