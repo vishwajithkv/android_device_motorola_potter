@@ -22,22 +22,29 @@ DEVICE_PATH := device/motorola/potter
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += $(DEVICE_PATH)
 
+# Boot animation
+TARGET_SCREEN_HEIGHT := 1920
+TARGET_SCREEN_WIDTH := 1080
+
 # Audio
 PRODUCT_PACKAGES += \
-    android.hardware.audio@4.0-impl \
-    android.hardware.audio.service \
-    android.hardware.audio.effect@4.0-impl \
-    android.hardware.audio.effect@2.0-service \
-    audiod \
+    android.hardware.audio@6.0-impl \
+    android.hardware.audio.effect@6.0-impl \
+    android.hardware.audio@2.0-service \
+    android.hardware.broadcastradio@1.0-impl \
+    audio.primary.msm8953 \
     audio.a2dp.default \
-    audio.r_submix.default \
     audio.usb.default \
+    audio.r_submix.default \
     libaacwrapper \
     libaudio-resampler \
+    libshim_adsp \
+    libtinycompress \
+    audiod \
     libqcomvisualizer \
     libqcomvoiceprocessing \
-    libvolumelistener \
-    tinymix
+    libqcomvoiceprocessingdescriptors \
+    libqcompostprocbundle
 
 PRODUCT_COPY_FILES +=  \
     $(DEVICE_PATH)/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
