@@ -76,12 +76,18 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
+    libbson \
+      Snap   \
+    camera.device@1.0-impl \
+    camera.device@3.2-impl:32 \
+    android.hardware.camera.provider@2.4-impl:32 \
     android.hardware.camera.provider@2.4-service \
-    android.hardware.camera.provider@2.4-impl \
-    camera.device@3.2-impl \
-    libwui \
-    Snap
-
+    vendor.qti.hardware.camera.device@1.0 \
+    vendor.qti.hardware.camera.device@1.0_vendor \
+    libjustshoot_shim \
+    libgui_vendor \
+    libhidltransport
+    
 PRODUCT_COPY_FILES += \
      $(DEVICE_PATH)/configs/camera/msm8953_mot_potter_camera.xml:system/etc/camera/msm8953_mot_potter_camera.xml \
      $(DEVICE_PATH)/configs/camera/mot_ov5695_chromatix.xml:system/etc/camera/mot_ov5695_chromatix.xml \
