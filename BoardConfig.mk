@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-COMMON_PATH := device/motorola/msm8953-common
+DEVICE_PATH := device/motorola/potter
 
 BOARD_VENDOR := motorola
 
@@ -31,6 +31,7 @@ TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := generic
 TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a53
+OVERRIDE_QCOM_HARDWARE_VARIANT := msm8996-los
 
 # Platform
 BOARD_USES_QCOM_HARDWARE := true
@@ -92,7 +93,7 @@ BUILD_BROKEN_DUP_RULES := true
 BUILD_BROKEN_USES_BUILD_COPY_HEADERS := true
 
 # Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(COMMON_PATH)/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
 
@@ -127,25 +128,30 @@ TARGET_NO_RPC := true
 USE_DEVICE_SPECIFIC_GPS := true
 
 # HIDL
-DEVICE_MANIFEST_FILE := $(COMMON_PATH)/manifest.xml
-DEVICE_MATRIX_FILE   := $(COMMON_PATH)/compatibility_matrix.xml
+DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/manifest.xml
+DEVICE_MATRIX_FILE   := $(DEVICE_PATH)/compatibility_matrix.xml
 TARGET_FS_CONFIG_GEN := \
-    $(COMMON_PATH)/configs/config.fs \
-    $(COMMON_PATH)/configs/mot_aids.fs
+    $(DEVICE_PATH)/configs/config.fs \
+    $(DEVICE_PATH)/configs/mot_aids.fs
 
 # Init
-TARGET_INIT_VENDOR_LIB := //$(COMMON_PATH):libinit_msm8953
-TARGET_RECOVERY_DEVICE_MODULES := libinit_msm8953
+TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_potter
+TARGET_RECOVERY_DEVICE_MODULES := libinit_potter
 
 # Kernel
 TARGET_COMPILE_WITH_MSM_KERNEL := true
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=30 msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 androidboot.bootdevice=7824900.sdhci loop.max_part=16
 BOARD_KERNEL_CMDLINE += sched_enable_hmp=1 sched_enable_power_aware=1 app_setting.use_32bit_app_setting=1 kpti=1
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
+BOARD_KERNEL_IMAGE_NAME := Image.gz
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 BOARD_RAMDISK_OFFSET := 0x01000000
-TARGET_KERNEL_SOURCE := kernel/motorola/msm8953
+TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_SOURCE := kernel/motorola/potter
+TARGET_KERNEL_CONFIG := potter_defconfig
+BOARD_KERNEL_SEPARATED_DT := true
 TARGET_KERNEL_CLANG_COMPILE := true
 
 # Lights
@@ -153,9 +159,14 @@ TARGET_PROVIDES_LIBLIGHT := true
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072
-BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
+BOARD_VENDORIMAGE_PARTITION_SIZE := 665845760
+BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 33554432
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3510353920
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 26401026048
 TARGET_EXFAT_DRIVER := exfat
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
@@ -180,24 +191,28 @@ TARGET_PER_MGR_ENABLED := true
 TARGET_USES_INTERACTION_BOOST := true
 
 # Properties
-TARGET_ODM_PROP += $(COMMON_PATH)/odm.prop
-TARGET_PRODUCT_PROP += $(COMMON_PATH)/product.prop
-TARGET_VENDOR_PROP += $(COMMON_PATH)/vendor.prop
+TARGET_ODM_PROP += $(DEVICE_PATH)/odm.prop
+TARGET_PRODUCT_PROP += $(DEVICE_PATH)/product.prop
+TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
 
 # Timeservice
 BOARD_USES_QC_TIME_SERVICES := true
 
 # RIL
 TARGET_PROVIDES_QTI_TELEPHONY_JAR := true
-CUSTOM_APNS_FILE := $(COMMON_PATH)/configs/sprint_apns.xml
+CUSTOM_APNS_FILE := $(DEVICE_PATH)/configs/sprint_apns.xml
+
+# Recovery
+BOARD_HAS_NO_SELECT_BUTTON := true
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.recovery
 
 # Root
 BOARD_ROOT_EXTRA_FOLDERS := persist
 
 # SELinux
 include device/qcom/sepolicy-legacy-um/SEPolicy.mk
-BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
-BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(COMMON_PATH)/sepolicy/private
+BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
+BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/private
 
 # Wifi
 BOARD_HAS_QCOM_WLAN              := true
@@ -215,4 +230,5 @@ TARGET_DISABLE_WCNSS_CONFIG_COPY := true
 WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
 PRODUCT_VENDOR_MOVE_ENABLED := true
 
--include vendor/motorola/msm8953-common/BoardConfigVendor.mk
+# Inherit from proprietary 
+-include vendor/motorola/potter/BoardConfigVendor.mk

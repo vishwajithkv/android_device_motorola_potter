@@ -45,7 +45,7 @@
 
 /(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.1-fpcservice    u:object_r:hal_fingerprint_fpc_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.1-service-ets   u:object_r:hal_fingerprint_fpc_exec:s0
-/(vendor|system/vendor)/bin/hw/android\.hardware\.light@2\.0-service\.msm8953                u:object_r:hal_light_default_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.light@2\.0-service\.potter                u:object_r:hal_light_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.dolby\.hardware\.dms@1\.0-service                     u:object_r:hal_dms_default_exec:s0
 /(vendor|system/vendor)/bin/init\.mmi\.(laser|usb)\.sh                          u:object_r:qti_init_shell_exec:s0
 /(vendor|system/vendor)/bin/init\.qcom\.power\.sh                               u:object_r:qti_init_shell_exec:s0
@@ -82,6 +82,12 @@
 
 # Persist mdm
 /(mnt/vendor)/persist/mdm(/.*)?                                         u:object_r:persist_mdm_file:s0
+
+# Partitions
+/bt_firmware(/.*)?                                       u:object_r:bt_firmware_file:s0
+/firmware(/.*)?                                          u:object_r:firmware_file:s0
+/fsg(/.*)?                                               u:object_r:fsg_file:s0
+/persist(/.*)?                                           u:object_r:mnt_vendor_file:s0
 
 # Battery and healthd
 /(mnt/vendor)/persist/battery(/.*)?                               u:object_r:persist_battery_file:s0
