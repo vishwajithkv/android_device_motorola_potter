@@ -14,6 +14,7 @@
 # limitations under the License.
 
 # Inherit proprietary files
+$(call inherit-product, vendor/motorola/msm8953-common/msm8953-common-vendor.mk)
 $(call inherit-product, vendor/motorola/potter/potter-vendor.mk)
 
 # Device Tree Path

@@ -237,5 +237,6 @@ TARGET_DISABLE_WCNSS_CONFIG_COPY := true
 WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
 PRODUCT_VENDOR_MOVE_ENABLED := true
 
-# Inherit from proprietary 
--include vendor/motorola/potter/BoardConfigVendor.mk
+# Inherit from proprietary
+include vendor/motorola/msm8953-common/BoardConfigVendor.mk
+include vendor/motorola/potter/BoardConfigVendor.mk
