@@ -248,10 +248,10 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/keylayout/synaptics_rmi4_i2c.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/synaptics_rmi4_i2c.kl \
     $(DEVICE_PATH)/configs/keylayout/uinput-fpc.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/uinput-fpc.kl
 
-# Keymaster HAL
+# Keymaster
 PRODUCT_PACKAGES += \
-    android.hardware.keymaster@3.0-impl \
-    android.hardware.keymaster@3.0-service
+    android.hardware.keymaster@4.0-impl \
+    android.hardware.keymaster@4.0-service
 
 # Lights
 PRODUCT_PACKAGES += \
